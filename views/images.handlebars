@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-3">{{individualRecipe.keyword}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="card-content">
+    <div class="card-image">
+      <figure class="image img">
+        <img src={{individualRecipe.imageUrl}}
+          alt="Crafting Recipe image">
+      </figure>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">Comments</p>
+      </div>
+    </div>
+    <section data-image-id={{individualRecipe.id}} class='add-comment-container, card-content'>
+      <form id='new-comment-form'>
+        <textarea class="input" id='new_comment' name='new_comment' placeholder="Enter comment here!"></textarea>
+        <br>
+        <button class="button is-primary" type='submit'>
+          Submit
+        </button>
+      </form>
+    </section>
+    <div class="card-content">
+      {{#each matchingComments as |comment|}}
+      {{#ifCond comment.text.length '>' 0}}
+      <p class="card-content">
+        <strong>{{comment.text}}</strong><br>
+        <small>ID: {{comment.id}}</small>
+        <small>IMAGE-ID: {{comment.image_id}}</small>
+        <small>{{comment.createdAt}}</small>
+      </p>
+      {{/ifCond}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+<!-- This is the script for adding a new comment -->
+<script type="application/javascript" src='/js/add-comment.js'></script>
